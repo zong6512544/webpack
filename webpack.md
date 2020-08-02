@@ -154,20 +154,16 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
 
 #### 3.2.使用
 
-- **css-loader**
-- **style-loader**
-- **less-loader**
-- ****
-
   >
   安装：
   
   ```node
-    npm install --save-dev@2.0.2 css-loader
-    npm install style-loader --save-dev
+    npm install --save-dev css-loader@2.0.2
+    npm install --save-dev style-loader
     npm install --save-dev less-loader@4.1.0 less
     npm install --save-dev url-loader@1.1.2
     npm install --save-dev file-loader@3.0.1
+    npm install --save-dev  babel-loader@7 babel-core babel-preset-es2015
   ```
 
   配置：
@@ -230,8 +226,32 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
               name: 'img/[name].[hash:8].[ext]'
             }
           }]
+        },
+        {
+          // <!-- 匹配所有.js结尾的文件 -->
+          test: /\.js$/,
+          // include:包含的文件夹
+          // exclude:不包含的文件夹
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            // <!-- babel-loader: -->
+            // <!-- es6转es5语法 -->
+            loader: 'babel-loader',
+            options: {
+              // presets: ['@babel/preset-env']
+              presets: ['es2015']
+            }
+          }
         }
       ]
     }
   }
   ```
+
+### $\color{green}{4.babel配置}$
+
+#### 4.1.安装loader
+
+```javascript
+npm install --save-dev  babel-loader@7 babel-core babel-preset-es2015
+```

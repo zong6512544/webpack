@@ -2,7 +2,7 @@
  * @Author: zongbao.yao
  * @Date: 2020-08-02 12:36:06
  * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 16:43:10
+ * @LastEditTime: 2020-08-02 16:46:18
  * @Description: webpack配置文件
  */
 
@@ -84,6 +84,22 @@ module.exports = {
             name: 'img/[name].[hash:8].[ext]'
           }
         }]
+      },
+      {
+        // <!-- 匹配所有.js结尾的文件 -->
+        test: /\.js$/,
+        // include:包含的文件夹
+        // exclude:不包含的文件夹
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          // <!-- babel-loader: -->
+          // <!-- es6转es5语法 -->
+          loader: 'babel-loader',
+          options: {
+            // presets: ['@babel/preset-env']
+            presets: ['es2015']
+          }
+        }
       }
     ]
   }
