@@ -157,6 +157,8 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
 - **css-loader**
 - **style-loader**
 - **less-loader**
+- ****
+
   >
   安装：
   
@@ -164,6 +166,8 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
     npm install --save-dev@2.0.2 css-loader
     npm install style-loader --save-dev
     npm install --save-dev less-loader@4.1.0 less
+    npm install --save-dev url-loader@1.1.2
+    npm install --save-dev file-loader@3.0.1
   ```
 
   配置：
@@ -191,11 +195,40 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
 
           <!-- 将 css-loader、style-loader 和 less-loader 链式调用，可以把所有样式立即应用于 DOM。 -->
           use: [{
-            loader: "style-loader" // creates style nodes from JS strings
+            loader: "style-loader"
           }, {
-            loader: "css-loader" // translates CSS into CommonJS
+            loader: "css-loader"
           }, {
-            loader: "less-loader" // compiles Less to CSS
+            <!-- less-loader: -->
+            <!-- 加载和转译 LESS 文件 -->
+            loader: "less-loader"
+          }]
+        },
+        {
+          <!-- 匹配所有png、jpg、gif、jpeg结尾的文件 -->
+          test: /\.(png|jpg|gif|jpeg)$/,
+
+          <!--  -->
+          use: [{
+
+            loader: 'url-loader',
+
+            options: {
+              <!-- url-loader: -->
+              <!-- 像 file loader 一样工作，但如果文件小于limit限制，可以返回 data URL，图片编译成base64格式显示 -->
+
+              <!-- file-loader: -->
+              <!-- 否则，将执行file-loader，将文件发送到输出文件夹，并返回（相对）URL，进行模块加载 -->
+              limit: 8192
+
+              <!-- 对打包图片的命名和路径处理 -->
+              <!-- 1.打包后的图片路径：在img文件夹下 -->
+              <!-- 2.打包后的文件名：name + hash + ext -->
+              <!-- name:原文件名 -->
+              <!-- hash：8为哈希值 -->
+              <!-- ext:源文件扩展名 -->
+              name: 'img/[name].[hash:8].[ext]'
+            }
           }]
         }
       ]

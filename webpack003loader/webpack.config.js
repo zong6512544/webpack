@@ -2,7 +2,7 @@
  * @Author: zongbao.yao
  * @Date: 2020-08-02 12:36:06
  * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 15:14:39
+ * @LastEditTime: 2020-08-02 16:18:47
  * @Description: webpack配置文件
  */
 
@@ -23,12 +23,15 @@ module.exports = {
     // path:当前拼接路径
 
     // 打包后文件名
-    filename: 'yzb.js'
+    filename: 'yzb.js',
+
+    // <!-- file-loader: -->
+    publicPath: 'dist/'
   },
   // loader
   module: {
     rules: [{
-        // <!-- 匹配所有.css文件结尾的文件 -->
+        // <!-- 匹配所有.css结尾的文件 -->
         test: /\.css$/,
 
         // <!-- css-loader: -->
@@ -43,13 +46,43 @@ module.exports = {
       {
         // <!-- 匹配所有.less结尾的文件 -->
         test: /\.less$/,
+
         // <!-- 将 css-loader、style-loader 和 less-loader 链式调用，可以把所有样式立即应用于 DOM。 -->
         use: [{
-          loader: "style-loader" // creates style nodes from JS strings
+          loader: "style-loader"
         }, {
-          loader: "css-loader" // translates CSS into CommonJS
+          loader: "css-loader"
         }, {
-          loader: "less-loader" // compiles Less to CSS
+          // <!-- less-loader: -->
+          // <!-- 加载和转译 LESS 文件 -->
+          loader: "less-loader"
+        }]
+      },
+      {
+        // <!-- 匹配所有png、jpg、gif、jpeg结尾的文件 -->
+        test: /\.(png|jpg|gif|jpeg)$/,
+
+        // <!--  -->
+        use: [{
+
+          loader: 'url-loader',
+
+          options: {
+            // <!-- url-loader: -->
+            // <!-- 像 file loader 一样工作，但如果文件小于limit限制，可以返回 data URL，图片编译成base64格式显示 -->
+
+            // <!-- file-loader: -->
+            // <!-- 否则，将执行file-loader，将文件发送到输出文件夹，并返回（相对）URL，进行模块加载 -->
+            limit: 8196,
+            
+            // <!-- 对打包图片的命名和路径处理 -->
+            // <!-- 1.打包后的图片路径：在img文件夹下 -->
+            // <!-- 2.打包后的文件名：name + hash + ext -->
+            // <!-- name:原文件名 -->
+            // <!-- hash：8为哈希值 -->
+            // <!-- ext:源文件扩展名 -->
+            name: 'img/[name].[hash:8].[ext]'
+          }
         }]
       }
     ]

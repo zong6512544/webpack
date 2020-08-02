@@ -57,7 +57,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "dist/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 2);
@@ -462,7 +462,7 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* userInfo */].name + '-
 __webpack_require__(5)
 
 // 4.依赖less,sass文件
-__webpack_require__(7)
+__webpack_require__(9)
 
 /***/ }),
 /* 3 */
@@ -540,8 +540,12 @@ module.exports = content.locals || {};
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
+// Imports
+var urlEscape = __webpack_require__(7);
+var ___CSS_LOADER_URL___0___ = urlEscape(__webpack_require__(8));
+
 // Module
-exports.push([module.i, "body {\r\n  background-color: pink;\r\n}", ""]);
+exports.push([module.i, "body {\r\n  /* background-color: pink; */\r\n  background-image: url(" + ___CSS_LOADER_URL___0___ + ");\r\n}", ""]);
 
 
 
@@ -549,8 +553,40 @@ exports.push([module.i, "body {\r\n  background-color: pink;\r\n}", ""]);
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+module.exports = function escape(url) {
+  if (typeof url !== 'string') {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    url = url.slice(1, -1);
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url)) {
+    return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"';
+  }
+
+  return url;
+};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "img/nice.e8f92f04.png";
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var api = __webpack_require__(0);
-            var content = __webpack_require__(8);
+            var content = __webpack_require__(10);
 
             content = content.__esModule ? content.default : content;
 
@@ -570,7 +606,7 @@ var update = api(content, options);
 module.exports = content.locals || {};
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(false);
