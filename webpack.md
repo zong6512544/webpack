@@ -3,10 +3,11 @@
 ## $\color{purple}{学习内容：}$
 
 - 1.webpack起步
+- 2.webpack配置
 
 ### $\color{green}{1.webpack起步}$
 
-#### 1.1.webpack安装：
+#### 1.1.webpack安装
 
 ```cmd
 
@@ -21,7 +22,7 @@ webpack ./path/name ./dist/name     //打包目标文件到指定位置
 
 #### 1.2.起步demo
 
-**详见目录webpack001文件夹演示**
+**详见目录webpack001文件夹演示:**
 
 >项目构建：
 >webpack001
@@ -33,3 +34,12 @@ webpack ./path/name ./dist/name     //打包目标文件到指定位置
 >>>utils.js   //测试模块打包（common.js）
 >>
 >>index.html   //页面，引入打包后的main.js，未打包的情况下，是不能进行导入导出操作
+
+```git
+  <!-- 执行打包命令 -->
+  <!-- 打包目标文件到指定位置 -->
+  webpack ./src/main.js ./dist/yzb.js
+```
+
+### $\color{green}{2.webpack配置}$
+
