@@ -11,12 +11,13 @@
 
 ```cmd
 
-webpack --version               //查看webpack版本
+webpack --version                     //查看webpack版本
 
-npm install webpack@3.6.0 -g    //安装指定版本的webpack(-g表示全局安装)  
-                                //实际项目中需要局部安装(--save-dev)
+npm install webpack@3.6.0 -g          //安装指定版本的webpack(-g表示全局安装)  
 
-webpack ./path/name ./dist/name     //打包目标文件到指定位置
+npm install webpack@3.6.0 --save-dev  //实际项目中需要局部安装(--save-dev)
+
+webpack ./path/name ./dist/name       //打包目标文件到指定位置
 
 ```
 
@@ -43,14 +44,16 @@ webpack ./path/name ./dist/name     //打包目标文件到指定位置
 
 ### $\color{green}{2.webpack配置}$
 
-#### 2.1.配置
+#### 2.1.配置webpack指令打包
 
-- #### 2.1.1.关于操作
+**$\color{red}{本地项目没有安装webpack,会执行全局webpack打包}$**
 
-  创建webpack.config.js,让webpack读取此配置文件
+- ##### 2.1.1.关于操作
 
-  配置后可以直接命令：webpack进行读取配置，打包
+  创建webpack.config.js,让webpack读取此配置文件。
 
+  配置后可以直接命令：webpack进行读取配置，打包。
+  >
   demo:
 
   ```javascript
@@ -62,7 +65,7 @@ webpack ./path/name ./dist/name     //打包目标文件到指定位置
     webpack
   ```
 
-- #### 2.1.2.打包配置信息
+- ##### 2.1.2.打包配置信息
 
   ```javascript
   // node动态获取当前绝对路径（需要node依赖）
@@ -88,13 +91,11 @@ webpack ./path/name ./dist/name     //打包目标文件到指定位置
   }
   ```
 
-### 2.2.注意
+- ##### 2.2.3.配置node依赖
 
-- #### 2.2.1.配置node依赖
-
-  因为打包路径是绝对路径，需要node动态获取当前绝对路径，因此也需要引入node依赖。
-
-```javascript
+  $\color{red}{因为打包路径是绝对路径，需要node动态获取当前绝对路径，因此也需要引入node依赖。}$
+  >
+  ```javascript
   npm init //初始化node
 
   // case01:
@@ -109,4 +110,37 @@ webpack ./path/name ./dist/name     //打包目标文件到指定位置
   npm init -y
 
   // 最后会生成package.json
-```
+  ```
+
+#### 2.1.配置 webpack => npm run build 命令映射打包
+
+- ##### 2.1.npm run some 的运行流程
+
+  - $\color{red}{当我们执行如下命令时:}$
+
+    ```javascript
+      npm run some
+    ```
+
+  - $\color{red}{node会去读配置文件package.json}$
+  - $\color{red}{找到script属性下some属性，并运行其后面的指令。}$
+  >
+  例如：
+  【此处为npm run build，对应script下的build,会执行webpack命令】
+  >
+
+  ```json
+  {
+    "name": "meetwebpack",
+    "version": "1.0.0",
+    "description": "第一次webpack",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "webpack"
+    },
+    "author": "",
+    "license": "ISC"
+  }
+
+  ```
