@@ -2,7 +2,7 @@
  * @Author: zongbao.yao
  * @Date: 2020-08-02 11:55:46
  * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 14:19:21
+ * @LastEditTime: 2020-08-02 15:08:14
  * @Description: 测试引入模块化打包效果
  */
 
@@ -24,3 +24,6 @@ console.log(userInfo.name + '-' + userInfo.age)
 
 // 3.依赖css文件
 require('./css/normal.css')
+
+// 4.依赖less,sass文件
+require('./css/special.less')

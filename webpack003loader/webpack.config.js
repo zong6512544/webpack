@@ -2,7 +2,7 @@
  * @Author: zongbao.yao
  * @Date: 2020-08-02 12:36:06
  * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 14:56:24
+ * @LastEditTime: 2020-08-02 15:14:39
  * @Description: webpack配置文件
  */
 
@@ -27,8 +27,7 @@ module.exports = {
   },
   // loader
   module: {
-    rules: [
-      {
+    rules: [{
         // <!-- 匹配所有.css文件结尾的文件 -->
         test: /\.css$/,
 
@@ -39,7 +38,19 @@ module.exports = {
         // <!-- style-loader:将模块的导出作为样式添加到 DOM 中 -->
 
         // <!-- NOTICED:使用多个loader的时候，use是从右往左读取 -->
-        use: [ 'style-loader', 'css-loader' ]
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        // <!-- 匹配所有.less结尾的文件 -->
+        test: /\.less$/,
+        // <!-- 将 css-loader、style-loader 和 less-loader 链式调用，可以把所有样式立即应用于 DOM。 -->
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        }, {
+          loader: "css-loader" // translates CSS into CommonJS
+        }, {
+          loader: "less-loader" // compiles Less to CSS
+        }]
       }
     ]
   }

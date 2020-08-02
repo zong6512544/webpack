@@ -154,13 +154,16 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
 
 #### 3.2.使用
 
-- ##### css-loader + style-loader
-
+- **css-loader**
+- **style-loader**
+- **less-loader**
+  >
   安装：
   
   ```node
     npm install --save-dev@2.0.2 css-loader
     npm install style-loader --save-dev
+    npm install --save-dev less-loader@4.1.0 less
   ```
 
   配置：
@@ -170,7 +173,7 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
     module: {
       rules: [
         {
-          <!-- 匹配所有.css文件结尾的文件 -->
+          <!-- 匹配所有.css结尾的文件 -->
           test: /\.css$/,
 
           <!-- css-loader: -->
@@ -181,6 +184,19 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
 
           <!-- NOTICED:使用多个loader的时候，use是从右往左读取 -->
           use: [ 'style-loader', 'css-loader' ]
+        },
+        {
+          <!-- 匹配所有.less结尾的文件 -->
+          test: /\.less$/,
+
+          <!-- 将 css-loader、style-loader 和 less-loader 链式调用，可以把所有样式立即应用于 DOM。 -->
+          use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+          }, {
+            loader: "css-loader" // translates CSS into CommonJS
+          }, {
+            loader: "less-loader" // compiles Less to CSS
+          }]
         }
       ]
     }

@@ -60,114 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(2);
-/*
- * @Author: zongbao.yao
- * @Date: 2020-08-02 11:55:46
- * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 14:19:21
- * @Description: 测试引入模块化打包效果
- */
-
-//  1.common.js
-const {
-  add,
-  mul
-} = __webpack_require__(1)
-
-console.log(add(1, 2))
-console.log(mul(2, 3))
-
-// 2.es6 import
-
-
-console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* userInfo */].name + '-' + __WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* userInfo */].age)
-
-// 3.依赖css文件
-__webpack_require__(3)
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-/*
- * @Author: zongbao.yao
- * @Date: 2020-08-02 11:59:13
- * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 12:05:24
- * @Description: 测试模块化引入后打包的效果
- */
-
-function add(sum1, sum2) {
-  return sum1 + sum2
-}
-
-function mul(sum1, sum2) {
-  return sum1 * sum2
-}
-
-// common.js
-module.exports = {
-  add,
-  mul
-}
-
-/***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userInfo; });
-/*
- * @Author: zongbao.yao
- * @Date: 2020-08-02 12:05:48
- * @LastEditors: zongbao.yao
- * @LastEditTime: 2020-08-02 12:06:55
- * @Description: 测试引入模块化打包效果
- */
-
-let userInfo = {
-  name: 'yzb',
-  age: 22
-}
-
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var api = __webpack_require__(4);
-            var content = __webpack_require__(5);
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.i, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -442,17 +339,7 @@ module.exports = function (list, options) {
 };
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(6)(false);
-// Module
-exports.push([module.i, "body {\r\n  background-color: pink;\r\n}", ""]);
-
-
-
-/***/ }),
-/* 6 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -541,6 +428,156 @@ function toComment(sourceMap) {
   var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
   return '/*# ' + data + ' */';
 }
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__js_info__ = __webpack_require__(4);
+/*
+ * @Author: zongbao.yao
+ * @Date: 2020-08-02 11:55:46
+ * @LastEditors: zongbao.yao
+ * @LastEditTime: 2020-08-02 15:08:14
+ * @Description: 测试引入模块化打包效果
+ */
+
+//  1.common.js
+const {
+  add,
+  mul
+} = __webpack_require__(3)
+
+console.log(add(1, 2))
+console.log(mul(2, 3))
+
+// 2.es6 import
+
+
+console.log(__WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* userInfo */].name + '-' + __WEBPACK_IMPORTED_MODULE_0__js_info__["a" /* userInfo */].age)
+
+// 3.依赖css文件
+__webpack_require__(5)
+
+// 4.依赖less,sass文件
+__webpack_require__(7)
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+/*
+ * @Author: zongbao.yao
+ * @Date: 2020-08-02 11:59:13
+ * @LastEditors: zongbao.yao
+ * @LastEditTime: 2020-08-02 12:05:24
+ * @Description: 测试模块化引入后打包的效果
+ */
+
+function add(sum1, sum2) {
+  return sum1 + sum2
+}
+
+function mul(sum1, sum2) {
+  return sum1 * sum2
+}
+
+// common.js
+module.exports = {
+  add,
+  mul
+}
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return userInfo; });
+/*
+ * @Author: zongbao.yao
+ * @Date: 2020-08-02 12:05:48
+ * @LastEditors: zongbao.yao
+ * @LastEditTime: 2020-08-02 12:06:55
+ * @Description: 测试引入模块化打包效果
+ */
+
+let userInfo = {
+  name: 'yzb',
+  age: 22
+}
+
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(0);
+            var content = __webpack_require__(6);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// Module
+exports.push([module.i, "body {\r\n  background-color: pink;\r\n}", ""]);
+
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var api = __webpack_require__(0);
+            var content = __webpack_require__(8);
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.i, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// Module
+exports.push([module.i, "body {\n  font-size: 50px;\n  color: orange;\n}\n", ""]);
+
+
 
 /***/ })
 /******/ ]);
