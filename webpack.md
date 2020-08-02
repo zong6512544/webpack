@@ -4,6 +4,7 @@
 
 - 1.webpack起步
 - 2.webpack配置
+- 3.loader
 
 ### $\color{green}{1.webpack起步}$
 
@@ -143,4 +144,45 @@ webpack ./path/name ./dist/name       //打包目标文件到指定位置
     "license": "ISC"
   }
 
+  ```
+
+### $\color{green}{3.loader配置}$
+
+#### 3.1.安装loader
+
+  官网：https://www.webpackjs.com/loaders/css-loader/
+
+#### 3.2.使用
+
+- ##### css-loader + style-loader
+
+  安装：
+  
+  ```node
+    npm install --save-dev@2.0.2 css-loader
+    npm install style-loader --save-dev
+  ```
+
+  配置：
+
+  ```javascript
+  module.exports = {
+    module: {
+      rules: [
+        {
+          <!-- 匹配所有.css文件结尾的文件 -->
+          test: /\.css$/,
+
+          <!-- css-loader: -->
+          <!-- 解析 CSS 文件后，使用 import 加载，并且返回 CSS 代码 -->
+          <!-- 只负责加载，不负责引入页面 -->
+
+          <!-- style-loader:将模块的导出作为样式添加到 DOM 中 -->
+
+          <!-- NOTICED:使用多个loader的时候，use是从右往左读取 -->
+          use: [ 'style-loader', 'css-loader' ]
+        }
+      ]
+    }
+  }
   ```
